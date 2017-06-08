@@ -29,6 +29,8 @@ const headers     = {
 // function to instantiate
 function init(globalEmitter,globalCall,callback,url,key){
 //    globalEmitter.on(globalCall,setup)
+    
+    console.log("IM IN USER ACC SERVICE FILTER")
     globalEmitter.on(globalCall,setup)
     global=globalEmitter;
     callbackRouter=callback;
@@ -39,7 +41,6 @@ function init(globalEmitter,globalCall,callback,url,key){
 function setup(model)
 {
     model.once("service",serviceCallDecisionFactory);
-    console.log("IM IN USER ACC SERVICE FILTER")
 }
 
 function serviceCallDecisionFactory(model){    
