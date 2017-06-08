@@ -80,6 +80,7 @@ function emailRead(model){
                          if(body.data.length==0){
                              console.log("MAIL ID DOES NOT EXIST")
                               mobileReadFunction()
+                             email=false
                          }
                          else{
                              console.log("MAIL ID DOES EXIST")
@@ -145,6 +146,7 @@ function mobileReadFunction(){
                          if(body.data.length==0){
                              console.log("MOBILE DOES NOT EXIST")
                              serviceCallDecision()
+                             mobile=false
                          }
                          else{
                              console.log("MOBILE ID DOES EXIST")
