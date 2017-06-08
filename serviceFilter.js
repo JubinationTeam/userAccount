@@ -53,7 +53,7 @@ function emailRead(model){
                     "operation" : "read",
                     "data"      : {	
                                     "key"   : guardKey,
-                                    "schema": "Primary",
+                                    "schema": "Lead",
                                     "pageNo": "1",
                                     "data"  : {
 //                                                "email"     :model.req.body.data.email,
