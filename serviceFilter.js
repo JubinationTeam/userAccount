@@ -57,7 +57,8 @@ function emailRead(model){
                                     "pageNo": "1",
                                     "data"  : {
 //                                                "email"     :model.req.body.data.email,
-                                                "email"     : "bil123456778@gmail.com"
+                                               // "email"     : "bil123456778@gmail.com"
+                                            "email"     : "bil1234567gyjgfyjugfyujgyi78@gmail.com"
                                             }  
                                 }
 
@@ -80,6 +81,7 @@ function emailRead(model){
                          if(body.data.length==0){
                              console.log("MAIL ID DOES NOT EXIST")
                               mobileReadFunction()
+                             console.log(body)
                              email=false
                          }
                          else{
