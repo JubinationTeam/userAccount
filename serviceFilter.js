@@ -77,7 +77,7 @@ function emailRead(model){
                      try{
 //                        model.info=JSON.parse(body)
                         body=JSON.parse(body)
-                         if(body.data.length==0&&body.data instanceof Array{
+                         if(body.data.length==0&&body.data instanceof Array){
                              console.log("MAIL ID DOES NOT EXIST")
                              email=false
                               mobileReadFunction()
@@ -145,7 +145,7 @@ function mobileReadFunction(){
 //                        model.info=JSON.parse(body)  
                         body=JSON.parse(body)
                         console.log(body)
-                         if(body.data.length==0&&body.data instanceof Array{
+                         if(body.data.length==0&&body.data instanceof Array){
                              console.log("MOBILE DOES NOT EXIST")
                              mobile=false
                              serviceCallDecision()
