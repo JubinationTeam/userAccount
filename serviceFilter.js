@@ -29,6 +29,7 @@ const headers     = {
 // function to instantiate
 function init(globalEmitter,globalCall,callback,url,key){
 //    globalEmitter.on(globalCall,setup)
+    console.log(globalCall)
     globalEmitter.on(globalCall,setup)
     global=globalEmitter;
     callbackRouter=callback;
