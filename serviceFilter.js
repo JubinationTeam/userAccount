@@ -44,7 +44,7 @@ function setup(model)
 }
 
 function serviceCallDecisionFactory(model){    
-//    new emailRead(model)
+    new emailRead(model)
 }
                   
 function emailRead(model){
@@ -172,7 +172,7 @@ function mobileReadFunction(){
                     model.info={error:"Error in Common Access [User Account] : Common Access"};
                     model.emit(callbackRouter,model)
             }
-
+  
         }) 
 }
 
