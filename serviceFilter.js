@@ -80,9 +80,9 @@ function emailRead(model){
                         console.log(body)
                          if(body.data.length==0&&typeof body.data==='[object Array]'){
                              console.log("MAIL ID DOES NOT EXIST")
+                             email=false
                               mobileReadFunction()
                              console.log(body)
-                             email=false
                          }
                          else{
                              console.log("MAIL ID DOES EXIST")
@@ -148,8 +148,8 @@ function mobileReadFunction(){
                         console.log(body)
                          if(body.data.length==0&&typeof body.data==='[object Array]'){
                              console.log("MOBILE DOES NOT EXIST")
-                             serviceCallDecision()
                              mobile=false
+                             serviceCallDecision()
                          }
                          else{
                              console.log("MOBILE DOES EXIST")
