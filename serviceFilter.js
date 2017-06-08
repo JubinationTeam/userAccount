@@ -77,7 +77,6 @@ function emailRead(model){
                      try{
 //                        model.info=JSON.parse(body)
                         body=JSON.parse(body)
-                        console.log(typebody)
                          if(body.data.length==0&&body.data.isArray()){
                              console.log("MAIL ID DOES NOT EXIST")
                              email=false
