@@ -1,0 +1,17 @@
+{
+  "name": "useraccount",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Clifford Pereira",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "events": "^1.1.1",
+    "express": "^4.15.3",
+    "request": "^2.81.0"
+  }
+}
