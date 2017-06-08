@@ -149,7 +149,7 @@ function mobileReadFunction(){
                              mobile=false
                          }
                          else{
-                             console.log("MOBILE ID DOES EXIST")
+                             console.log("MOBILE DOES EXIST")
                              mobile=true
                              serviceCallDecision()
                          }
@@ -179,7 +179,7 @@ function mobileReadFunction(){
 }
 
 function serviceCallDecision(){
-    
+    console.log(email+" "+mobile)
     if(email||mobile){
         console.log("UPDATE ACCOUNT")
 //        global.emit("updateAccount",model)
