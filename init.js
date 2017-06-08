@@ -18,7 +18,7 @@ const globalEmitter = new GlobalEmitter();
 globalEmitter.setMaxListeners(3);
 
 //url variables
-const postUrlDef='/:type/:ops';
+const postUrlDef='/:type';
 const getUrlDef='/';
 
 //valid url's
