@@ -39,11 +39,11 @@ function init(globalEmitter,globalCall,callback,url,key){
 function setup(model)
 {
     model.once("service",serviceCallDecisionFactory);
+    console.log("IM IN USER ACC SERVICE FILTER:::::::")
 }
 
 function serviceCallDecisionFactory(model){    
     new emailRead(model)
-    console.log("IM IN USER ACC SERVICE FILTER:::::::")
 }
                   
 function emailRead(model){
