@@ -62,7 +62,7 @@ var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
             
             //specifying the leadId
             model.req.body.data.tags[0].leadId=model.req.body.data.leadId
-                
+                  
             var updateProperty={
                                 "mod"       : "guard",
                                 "operation" : "create",
@@ -80,8 +80,7 @@ var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
                                                             "age"       :  model.req.body.data.age,
                                                             "city"      :  model.req.body.data.city,
                                                             "pincode"   :  model.req.body.data.pincode,
-                                                            "stage"     :  "",
-                                                            "tags"      :  model.req.body.data.tags[0]
+                                                            "tags"      :  model.req.body.data.tags
                                                          }
                                             } 
                             };
