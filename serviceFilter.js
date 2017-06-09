@@ -82,7 +82,7 @@ function emailRead(model){
                         body=JSON.parse(body)
                          if(body.data.length==0&&body.data instanceof Array){
                              console.log("MAIL ID DOES NOT EXIST")
-                             email=false
+                             model.email=false
                              model.mobileRead(model)
                              console.log(body)
                          }
