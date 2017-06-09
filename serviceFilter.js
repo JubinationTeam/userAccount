@@ -29,7 +29,6 @@ const headers     = {
 // function to instantiate
 function init(globalEmitter,globalCall,callback,url,key){
 //    globalEmitter.on(globalCall,setup)
-    console.log(globalCall)
     globalEmitter.on(globalCall,setup)
     global=globalEmitter;
     callbackRouter=callback;
@@ -39,7 +38,6 @@ function init(globalEmitter,globalCall,callback,url,key){
 
 function setup(model)
 {
-    console.log("IM IN USER ACC SERVICE FILTER:::::::")
     model.once("service",serviceCallDecisionFactory);
 }
 
@@ -76,7 +74,6 @@ function emailRead(model){
              if (body){
                      try{
                          body=JSON.parse(body)
-                       console.log(JSON.stringify(body)+"::::::::::::::::::"+model.req.body.data.email)
                          if(body.data.length>0&&(!!body.data) && (body.data.constructor === Array)){
                                 model.accounts.push(body.data[0]);
                                 if(model.req.body.data.mobile==body.data.mobile){
@@ -87,7 +84,6 @@ function emailRead(model){
                     }   
                     catch(err){
                         model.info={error:err}
-                        console.log(err)
                         model.emit(callbackRouter,model)
 
                     }
@@ -111,7 +107,6 @@ function emailRead(model){
 }  
 
 function mobileRead(model){
-    console.log("IM IN MOBILE READ")
     var body={
                     "mod"       : "guard",
                     "operation" : "read",
@@ -138,7 +133,6 @@ function mobileRead(model){
              if (body){
                      try{ 
                         body=JSON.parse(body)
-                        console.log(JSON.stringify(body)+"::::::::::::::::::"+model.req.body.data.mobile)
                          if(body.data.length>0&&(!!body.data) && (body.data.constructor === Array)){
                              model.accounts.push(body.data[0]);
                          }
@@ -147,7 +141,6 @@ function mobileRead(model){
                     catch(err){
                         model.info={error:err}
                         model.emit(callbackRouter,model)
-                        console.log(err)
                     }
             }
             else if(response){
@@ -170,12 +163,10 @@ function mobileRead(model){
 
 function serviceCallDecision(model){
     if(model.accounts.length==0){
-        console.log("CREATE ACCOUNT")
         global.emit("createAccount",model)
         model.emit("createAccountService",model)
     }
     else{
-        console.log("UPDATE ACCOUNT")
         global.emit("updateAccount",model)
         model.emit("updateAccountService",model)
     }

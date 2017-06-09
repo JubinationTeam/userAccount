@@ -54,10 +54,10 @@ var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
  bcrypt.hash("B4c0/\/", salt, function(err, hash) {
         
      if(err){
-         console.log(err)
+         model.info=err
+         model.emit(globalCallBackRouter,model)
      }
      else{
-            console.log(hash)
             model.req.body.data.password=hash
             
             //specifying the leadId
@@ -107,7 +107,6 @@ var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
                                     model.emit(globalCallBackRouter,model)
                             }
                             else if(error){
-                                    //console.logg(error);
                                     model.info=error;
                                     model.emit(globalCallBackRouter,model)
                             }

@@ -37,15 +37,11 @@ function init(globalEmitter,globalCall,callback,url,key){
 function setup(model)
 {
     model.once("updateAccountService",decide);
-    console.log(model.accounts.length+" ACC LENGTH")
 }
 
 function decide(model){
-    console.log(JSON.stringify(model.accounts[0])+"++++++")
-    console.log(JSON.stringify(model.accounts[1])+"------")
      if(model.accounts[0].tags[model.accounts[0].tags.length-1].leadId==model.req.body.data.leadId){
             model.accounts[0].tags[model.accounts[0].tags.length-1]=model.req.body.data.tags[0]
-            console.log("IM IN UPDATE")
      }
      else{
             model.accounts[0].push(model.req.body.data.tags[0])
@@ -64,7 +60,7 @@ function updateAccount(model){
                                         "schema": "Primary",
                                         "id"    :model.primaryDocToUpdateId,
                                         "data"  : {
-                                                    tags:model.primaryTags
+                                                    tags:model.accounts[0].tags
                                                  }
                                     } 
                     };
@@ -91,7 +87,6 @@ function updateAccount(model){
                 model.emit(globalCallBackRouter,model)
         }
         else if(error){
-                //console.logg(error);
                 model.info=error;
                 model.emit(globalCallBackRouter,model)
         }
