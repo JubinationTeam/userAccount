@@ -89,7 +89,7 @@ function emailRead(model){
                          else{
                              console.log("MAIL ID DOES EXIST")
                              email=true
-                              mobileReadFunction()
+                             mobileRead()
                          }
 //                        model.email=true
                     }
@@ -116,7 +116,7 @@ function emailRead(model){
         }) 
 }
 
-function mobileReadFunction(){
+function mobileRead(model){
     console.log("IM IN EMAIL READ")
     var body={
                     "mod"       : "guard",
