@@ -47,9 +47,7 @@ function serviceCallDecisionFactory(model){
     new emailRead(model)
 }
                     
-function emailRead(model){
-    console.log(JSON.stringify(model.req.body))                         
-    console.log(model.req.body.data.email+":::::::::::::::::");
+function emailRead(model){             
     
     var body={
                     "mod"       : "guard",
@@ -77,14 +75,9 @@ function emailRead(model){
              if (body){
                      try{
                          body=JSON.parse(body)
-                       
+                       console.log(JSON.stringify(body)+"::::::::::::::::::"+model.req.body.data.email)
                          if(body.data.length>0&&(!!body.data) && (body.data.constructor === Array)){
-                             console.log(model.req.body.data.email+":::::::::::::::::");
-                             console.log("MAIL ID DOES EXIST"+JSON.stringify(body.data))
                              model.email=true
-                         }
-                         else{
-                             console.log("MAIL ID DOES NOT EXIST")
                          }
                          
                         mobileRead(model)
@@ -140,14 +133,9 @@ function mobileRead(model){
              if (body){
                      try{ 
                         body=JSON.parse(body)
-                         console.log(model.req.body.data.mobile)
+                        console.log(JSON.stringify(body)+"::::::::::::::::::"+model.req.body.data.mobile)
                          if(body.data.length>0&&(!!body.data) && (body.data.constructor === Array)){
-                             console.log("MOBILE DOES EXIST"+JSON.stringify(body.data))
                              model.mobile=true
-                             serviceCallDecision(model)
-                         }
-                         else{
-                             console.log("MOBILE DOES EXIST")
                          }
                          serviceCallDecision(model)
                     }
