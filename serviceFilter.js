@@ -151,7 +151,7 @@ function mobileRead(model){
 //                        model.info=JSON.parse(body)  
 //                        model.info=JSON.parse(body)  
                         body=JSON.parse(body)
-                         console.log(body.data=== ["object Array"]+"TYPE OF 2nd body")
+                         console.log(body.data instanceof Array+"TYPE OF 2nd body")
                         console.log(body)
                          if(body.data.length==0&&body.data instanceof Array){
                              console.log("MOBILE DOES NOT EXIST")
