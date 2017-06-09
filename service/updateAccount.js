@@ -40,7 +40,7 @@ function setup(model)
 }
 
 function decide(model){
-    console.log(model.accounts+"++++++")
+    console.log(JSON.stringify(model.accounts+"++++++"))
      if(model.accounts[0].tags[model.accounts[0].tags.length-1].leadId==model.req.body.data.leadId){
             model.accounts[0].tags[model.accounts[0].tags.length-1]=model.req.body.data.tags[0]
             console.log("IM IN UPDATE")
