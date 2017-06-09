@@ -79,7 +79,8 @@ function emailRead(model){
                          body=JSON.parse(body)
                        
                          if(body.data.length>0&&(!!body.data) && (body.data.constructor === Array)){
-                             console.log("MAIL ID DOES EXIST"+JSON.stringify(body.data[0]))
+                             console.log(model.req.body.data.email+":::::::::::::::::");
+                             console.log("MAIL ID DOES EXIST"+JSON.stringify(body.data))
                              model.email=true
                          }
                          else{
@@ -139,8 +140,9 @@ function mobileRead(model){
              if (body){
                      try{ 
                         body=JSON.parse(body)
+                         console.log(model.req.body.data.mobile)
                          if(body.data.length>0&&(!!body.data) && (body.data.constructor === Array)){
-                             console.log("MOBILE DOES EXIST"+JSON.stringify(body.data[0]))
+                             console.log("MOBILE DOES EXIST"+JSON.stringify(body.data))
                              model.mobile=true
                              serviceCallDecision(model)
                          }
