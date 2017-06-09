@@ -114,7 +114,7 @@ function emailRead(model){
             }
         
         }) 
-}
+}  
 
 function mobileRead(model){
     console.log("IM IN EMAIL READ")
