@@ -79,7 +79,8 @@ function emailRead(model){
          
              if (body){
                      try{
-//                         //body=JSON.parse(body)
+                         body=JSON.parse(body)
+                         console.log(typeof body.data)
 //                         console.log(body.data[0].email+" READ EMAIL BODY")
 //                         console.log(body.data.length+" LENGTH")
 //                         console.log(body.data instanceof Array+" BOOLEAN")
