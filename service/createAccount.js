@@ -113,9 +113,9 @@ var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
                     //    }) 
 
         }
-     }
      
     });
+}
 
 
 
