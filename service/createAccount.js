@@ -47,8 +47,7 @@ function createCredentialsFactory(model){
 
 function createCredentials(model){
 
-const data="abcd"
-const password=""
+model.req.body.data.password="abcd"
 
 var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
 
@@ -58,67 +57,69 @@ var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
          console.log(err)
      }
      else{
-         console.log(hash)
+            console.log(hash)
+            model.req.body.data.password=hash
+                
+            var updateProperty={
+                                "mod"       : "guard",
+                                "operation" : "create",
+                                "data"      : {	
+                                                "key"   : guardKey,
+                                                "schema": "Primary",
+                                                "data"  : {
+                                                            "name"      :  model.req.body.data.name,
+                                                            "mobile"    :  model.req.body.data.mobile,
+                                                            "email"     :  model.req.body.data.email,
+                                                            "address"   :  model.req.body.data.address,
+                                                            "password"  :  model.req.body.data.password,
+                                                            "dob"       :  model.req.body.data.dob,
+                                                            "gender"    :  model.req.body.data.gender,
+                                                            "age"       :  model.req.body.data.age,
+                                                            "city"      :  model.req.body.data.city,
+                                                            "pincode"   :  model.req.body.data.pincode,
+                                                            "stage"     :  "",
+                                                            "tags"      :  model.req.body.data.tags     
+                                                         }
+                                            } 
+                            };
+
+            console.log(updateProperty)
+
+            var updateRequestParams     = {
+                                    url     : commonAccessUrl,
+                                    method  : 'POST',
+                                    headers : headers,
+                                    body    : JSON.stringify(updateProperty)
+                            }
+                    //    request(updateRequestParams, function (error, response, body){
+                    //        
+                    //        if(body){
+                    //                body=JSON.parse(body);
+                    //                model.emit(globalCallBackRouter,model)
+                    //        }
+                    //        else if(response){
+                    //                model.info=response;
+                    //                model.emit(globalCallBackRouter,model)
+                    //        }
+                    //        else if(error){
+                    //                //console.logg(error);
+                    //                model.info=error;
+                    //                model.emit(globalCallBackRouter,model)
+                    //        }
+                    //        else{
+                    //                model.info="Error while creating User Account : User Account \n"+body;
+                    //                model.emit(globalCallBackRouter,model)
+                    //        }
+                    //    }) 
+
+        }
      }
      
     });
 
 
- model.req.body.data.password=password
-    
-    var updateProperty={
-                        "mod"       : "guard",
-                        "operation" : "create",
-                        "data"      : {	
-                                        "key"   : guardKey,
-                                        "schema": "Primary",
-                                        "data"  : {
-                                                    "name"      :  model.req.body.data.name,
-                                                    "mobile"    :  model.req.body.data.mobile,
-                                                    "email"     :  model.req.body.data.email,
-                                                    "address"   :  model.req.body.data.address,
-                                                    "password"  :  model.req.body.data.password,
-                                                    "dob"       :  model.req.body.data.dob,
-                                                    "gender"    :  model.req.body.data.gender,
-                                                    "age"       :  model.req.body.data.age,
-                                                    "city"      :  model.req.body.data.city,
-                                                    "pincode"   :  model.req.body.data.pincode,
-                                                    "stage"     :  "",
-                                                    "tags"      :  model.req.body.data.tags     
-                                                 }
-                                    } 
-                    };
-    
-    console.log(updateProperty)
-    
-    var updateRequestParams     = {
-                            url     : commonAccessUrl,
-                            method  : 'POST',
-                            headers : headers,
-                            body    : JSON.stringify(updateProperty)
-                    }
-//    request(updateRequestParams, function (error, response, body){
-//        
-//        if(body){
-//                body=JSON.parse(body);
-//                model.emit(globalCallBackRouter,model)
-//        }
-//        else if(response){
-//                model.info=response;
-//                model.emit(globalCallBackRouter,model)
-//        }
-//        else if(error){
-//                //console.logg(error);
-//                model.info=error;
-//                model.emit(globalCallBackRouter,model)
-//        }
-//        else{
-//                model.info="Error while creating User Account : User Account \n"+body;
-//                model.emit(globalCallBackRouter,model)
-//        }
-//    }) 
 
-}
+
 
 //exports
 module.exports.init=init;
