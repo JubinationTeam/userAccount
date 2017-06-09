@@ -83,34 +83,32 @@ var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
                                             } 
                             };
 
-            console.log(updateProperty.data.data.tags)
-
             var updateRequestParams     = {
                                     url     : commonAccessUrl,
                                     method  : 'POST',
                                     headers : headers,
                                     body    : JSON.stringify(updateProperty)
                             }
-                    //    request(updateRequestParams, function (error, response, body){
-                    //        
-                    //        if(body){
-                    //                body=JSON.parse(body);
-                    //                model.emit(globalCallBackRouter,model)
-                    //        }
-                    //        else if(response){
-                    //                model.info=response;
-                    //                model.emit(globalCallBackRouter,model)
-                    //        }
-                    //        else if(error){
-                    //                //console.logg(error);
-                    //                model.info=error;
-                    //                model.emit(globalCallBackRouter,model)
-                    //        }
-                    //        else{
-                    //                model.info="Error while creating User Account : User Account \n"+body;
-                    //                model.emit(globalCallBackRouter,model)
-                    //        }
-                    //    }) 
+                        request(updateRequestParams, function (error, response, body){
+                            
+                            if(body){
+                                    body=JSON.parse(body);
+                                    model.emit(globalCallBackRouter,model)
+                            }
+                            else if(response){
+                                    model.info=response;
+                                    model.emit(globalCallBackRouter,model)
+                            }
+                            else if(error){
+                                    //console.logg(error);
+                                    model.info=error;
+                                    model.emit(globalCallBackRouter,model)
+                            }
+                            else{
+                                    model.info="Error while creating User Account : User Account \n"+body;
+                                    model.emit(globalCallBackRouter,model)
+                            }
+                        }) 
 
         }
      
