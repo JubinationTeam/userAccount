@@ -92,7 +92,7 @@ function emailRead(model){
                              mobileRead(model)
                          }
 //                        model.email=true
-                    }
+                    }   
                     catch(err){
 //                        model.info={error:err}
                         console.log(err)
