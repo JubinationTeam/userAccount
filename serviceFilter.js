@@ -59,10 +59,7 @@ function emailRead(model){
                                     "schema": "Primary",
                                     "pageNo": "1",
                                     "data"  : {
-//                                                "email"     :model.req.body.data.email
-//                                                "email"     :"test@test.com"
-                                                "email"     : "bil123456778@gmail.com"
-//                                            "email"     : "bil1234567gyjgfyjugfyujgyi78@gmail.com"
+                                                "email"     :model.req.body.data.email
                                             }  
                                 }
 
@@ -81,17 +78,15 @@ function emailRead(model){
                      try{
                          body=JSON.parse(body)
                        
-                         if(body.data.length==0&&(!!body.data) && (body.data.constructor === Array)){
-                             console.log("MAIL ID DOES NOT EXIST")
-                             model.email=false
-                             mobileRead(model)
-                         }
-                         else{
+                         if(body.data.length>0&&(!!body.data) && (body.data.constructor === Array)){
                              console.log("MAIL ID DOES EXIST")
                              model.email=true
-                             mobileRead(model)
                          }
-//                        model.email=true
+                         else{
+                             console.log("MAIL ID DOES NOT EXIST")
+                         }
+                         
+                        mobileRead(model)
                     }   
                     catch(err){
 //                        model.info={error:err}
@@ -117,7 +112,7 @@ function emailRead(model){
 }  
 
 function mobileRead(model){
-    console.log("IM IN EMAIL READ")
+    console.log("IM IN MOBILE READ")
     var body={
                     "mod"       : "guard",
                     "operation" : "read",
@@ -127,7 +122,6 @@ function mobileRead(model){
                                     "pageNo": "1",
                                     "data"  : {
                                                 "mobile"     :model.req.body.data.mobile
-//                                                "mobile"     : "9820072155"
                                             }  
                                 }
 
@@ -145,17 +139,15 @@ function mobileRead(model){
              if (body){
                      try{ 
                         body=JSON.parse(body)
-                         if(body.data.length==0&&(!!body.data) && (body.data.constructor === Array)){
-                             console.log("MOBILE DOES NOT EXIST")
-                             model.mobile=false
-                             serviceCallDecision()
-                         }
-                         else{
+                         if(body.data.length>0&&(!!body.data) && (body.data.constructor === Array)){
                              console.log("MOBILE DOES EXIST")
                              model.mobile=true
                              serviceCallDecision(model)
                          }
-//                        model.email=true
+                         else{
+                             console.log("MOBILE DOES EXIST")
+                         }
+                         serviceCallDecision(model)
                     }
                     catch(err){
 //                        model.info={error:err}
