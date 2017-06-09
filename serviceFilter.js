@@ -49,7 +49,7 @@ function serviceCallDecisionFactory(model){
                   
 function emailRead(model){
     
-    console.log(model.req.body.newTags+"BBBBOOOODDDDDYYYYY")                             console.log(model.req.body.data.email+":::::::::::::::::");
+    console.log(model.req.body.newTags+"BBBBOOOODDDDDYYYYY");                             console.log(model.req.body.data.email+":::::::::::::::::");
     
     var body={
                     "mod"       : "guard",
