@@ -81,7 +81,7 @@ var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
                                                             "city"      :  model.req.body.data.city,
                                                             "pincode"   :  model.req.body.data.pincode,
                                                             "stage"     :  "",
-                                                            "tags"      :  model.req.body.data.tags     
+                                                            "tags"      :  model.req.body.data.tags[0]
                                                          }
                                             } 
                             };
