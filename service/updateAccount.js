@@ -73,6 +73,7 @@ function readPrimary(model){
                          model.primaryTags=body.data[0].tags
                          if(body.data.tags[body.data.tags.length-1].leadId==model.req.body.data.leadId){
                                 model.primaryTags[model.primaryTags.length-1]=model.req.body.data.tags
+                                console.log("IM IN UPDATE")
                          }
                          else{
                                 model.primaryTags.push(model.req.body.data.tags)
