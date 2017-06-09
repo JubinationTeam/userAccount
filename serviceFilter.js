@@ -83,12 +83,12 @@ function emailRead(model){
                          if(body.data.length==0&&body.data instanceof Array){
                              console.log("MAIL ID DOES NOT EXIST")
                              email=false
-                              mobileRead(model)
+                             model.mobileRead(model)
                              console.log(body)
                          }
                          else{
                              console.log("MAIL ID DOES EXIST")
-                             email=true
+                             model.email=true
                              mobileRead(model)
                          }
 //                        model.email=true
@@ -150,13 +150,13 @@ function mobileRead(model){
                         console.log(body)
                          if(body.data.length==0&&body.data instanceof Array){
                              console.log("MOBILE DOES NOT EXIST")
-                             mobile=false
+                             model.mobile=false
                              serviceCallDecision()
                          }
                          else{
                              console.log("MOBILE DOES EXIST")
-                             mobile=true
-                             serviceCallDecision()
+                             model.mobile=true
+                             serviceCallDecision(model)
                          }
 //                        model.email=true
                     }
@@ -183,9 +183,9 @@ function mobileRead(model){
         }) 
 }
 
-function serviceCallDecision(){
+function serviceCallDecision(model){
     console.log(email+" "+mobile)
-    if(email||mobile){
+    if(model.email||model.mobile){
         console.log("UPDATE ACCOUNT")
 //        global.emit("updateAccount",model)
 //        model.emit("updateAccountService",model)
