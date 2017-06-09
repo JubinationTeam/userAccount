@@ -44,8 +44,6 @@ function updateFactory(model){
     //new createCredentials(model);
 }
 
-function 
-
 function createCredentials(model){
     
     var updateProperty={
