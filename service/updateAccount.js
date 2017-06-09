@@ -70,6 +70,7 @@ function readPrimary(model){
              if (body){
                      try{ 
                         body=JSON.parse(body)
+                         console.log(JSON.stringify(body.data[0].tags))
                          model.primaryTags=body.data[0].tags
                          if(model.primaryTags[model.primaryTags-1].leadId==model.req.body.data.leadId){
                                 model.primaryTags[model.primaryTags.length-1]=model.req.body.data.tags
