@@ -59,9 +59,9 @@ function emailRead(model){
                                     "schema": "Lead",
                                     "pageNo": "1",
                                     "data"  : {
-//                                                "email"     :model.req.body.data.email,
+                                                "email"     :model.req.body.data.email,
                                                // "email"     : "bil123456778@gmail.com"
-                                            "email"     : "bil1234567gyjgfyjugfyujgyi78@gmail.com"
+//                                            "email"     : "bil1234567gyjgfyjugfyujgyi78@gmail.com"
                                             }  
                                 }
 
@@ -126,8 +126,8 @@ function mobileReadFunction(){
                                     "schema": "Primary",
                                     "pageNo": "1",
                                     "data"  : {
-//                                                "email"     :model.req.body.data.email,
-                                                "mobile"     : "9820072155"
+                                                "mobile"     :model.req.body.data.mobile,
+//                                                "mobile"     : "9820072155"
                                             }  
                                 }
 
