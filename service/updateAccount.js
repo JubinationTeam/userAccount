@@ -36,8 +36,8 @@ function init(globalEmitter,globalCall,callback,url,key){
  
 function setup(model)
 {
-//    model.once("updateAccountService",decide);
-    console.log(model.accounts+" ACC LENGTH")
+    model.once("updateAccountService",decide);
+    console.log(model.accounts.length+" ACC LENGTH")
 }
 
 function decide(model){
