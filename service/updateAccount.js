@@ -36,76 +36,21 @@ function init(globalEmitter,globalCall,callback,url,key){
  
 function setup(model)
 {
-    model.once("updateAccountService",readPrimaryFactory);
+    model.once("updateAccountService",decide);
 }
 
-function readPrimaryFactory(model){
-     readPrimary(model);
+function decide(model){
+     if(model.accounts[0].tags[model.accounts[0].tags.length-1].leadId==model.req.body.data.leadId){
+            model.accounts[0].tags[model.accounts[0].tags.length-1]=model.req.body.data.tags[0]
+            console.log("IM IN UPDATE")
+     }
+     else{
+            model.accounts[0].push(model.req.body.data.tags[0])
+     }
+     model.primaryDocToUpdateId=model.accounts[0]._id
+     updateAccount(model)
 }
-
-function readPrimary(model){
-     var body={
-                    "mod"       : "guard",
-                    "operation" : "read",
-                    "data"      : {	
-                                    "key"   : guardKey,
-                                    "schema": "Primary",
-                                    "pageNo": "1",
-                                    "data"  : {
-                                                "email"     :model.req.body.data.email
-                                            }  
-                                }
-
-                }
     
-      var options     = {
-                            url     : commonAccessUrl,
-                            method  : 'POST',
-                            headers : headers,
-                            body    : JSON.stringify(body)
-                    }
-    
-    request(options, function (error, response, body){
-        
-             if (body){
-                     try{ 
-                        body=JSON.parse(body)
-                         console.log(JSON.stringify(body.data[0].tags))
-                         model.primaryTags=body.data[0].tags
-                         if(model.primaryTags[model.primaryTags.length-1].leadId==model.req.body.data.leadId){
-                                model.primaryTags[model.primaryTags.length-1]=model.req.body.data.tags
-                                console.log("IM IN UPDATE")
-                         }
-                         else{
-                                model.primaryTags.push(model.req.body.data.tags)
-                         }
-                         model.primaryDocToUpdateId=body.data[0]._id
-                         updateAccount(model)
-                    }
-                    catch(err){
-                        model.info={error:err}
-                        console.log(err)
-                        model.emit(callbackRouter,model)
-                    }
-            }
-            else if(response){
-                    model.info={error:response,
-                                place:"Common Access User Account"}
-                    model.emit(callbackRouter,model)
-            }
-            else if(error){
-                    model.info={error:error,
-                                place:"Common Access User Account"}
-                    model.emit(callbackRouter,model)
-            }      
-            else{
-                    model.info={error:"Error in Common Access [User Account] : Common Access"};
-                    model.emit(callbackRouter,model)
-            }
-  
-        }) 
-}
-
 function updateAccount(model){
     
     var updateProperty={
