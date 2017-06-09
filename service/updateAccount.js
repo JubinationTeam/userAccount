@@ -40,7 +40,7 @@ function setup(model)
 }
 
 function updateFactory(model){
-    console.log(model.accounts+"AAAAAAACCCOOUNTS")
+    console.log(model.accounts.length+"AAAAAAACCCOOUNTS")
     //new createCredentials(model);
 }
 
