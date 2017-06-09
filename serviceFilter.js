@@ -48,6 +48,7 @@ function serviceCallDecisionFactory(model){
 }
                   
 function emailRead(model){
+    console.log(JSON.stringify(model.req.body))
     
     console.log(model.req.body.newTags+"BBBBOOOODDDDDYYYYY");                             console.log(model.req.body.data.email+":::::::::::::::::");
     
