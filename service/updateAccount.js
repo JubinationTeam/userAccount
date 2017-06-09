@@ -36,24 +36,85 @@ function init(globalEmitter,globalCall,callback,url,key){
  
 function setup(model)
 {
-    model.once("updateAccountService",updateFactory);
+    model.once("updateAccountService",readPrimaryFactory);
 }
 
-function updateFactory(model){
-    console.log(model.accounts.length+"AAAAAAACCCOOUNTS")
-    //new createCredentials(model);
+function readPrimaryFactory(model){
+     readPrimary(model);
 }
 
-function createCredentials(model){
+function readPrimary(model){
+     var body={
+                    "mod"       : "guard",
+                    "operation" : "read",
+                    "data"      : {	
+                                    "key"   : guardKey,
+                                    "schema": "Primary",
+                                    "pageNo": "1",
+                                    "data"  : {
+                                                "email"     :model.req.body.data.email
+                                            }  
+                                }
+
+                }
+    
+      var options     = {
+                            url     : commonAccessUrl,
+                            method  : 'POST',
+                            headers : headers,
+                            body    : JSON.stringify(body)
+                    }
+    
+    request(options, function (error, response, body){
+        
+             if (body){
+                     try{ 
+                        body=JSON.parse(body)
+                         model.primaryTags=body.data[0].tags
+                         if(body.data.tags[body.data.tags.length-1].leadId==model.req.body.data.leadId){
+                                model.primaryTags[model.primaryTags.length-1]=model.req.body.data.tags
+                         }
+                         else{
+                                model.primaryTags.push(model.req.body.data.tags)
+                         }
+                         model.primaryDocToUpdateId=body.data[0]._id
+                         updateAccount(model)
+                    }
+                    catch(err){
+                        model.info={error:err}
+                        console.log(err)
+                        model.emit(callbackRouter,model)
+                    }
+            }
+            else if(response){
+                    model.info={error:response,
+                                place:"Common Access User Account"}
+                    model.emit(callbackRouter,model)
+            }
+            else if(error){
+                    model.info={error:error,
+                                place:"Common Access User Account"}
+                    model.emit(callbackRouter,model)
+            }      
+            else{
+                    model.info={error:"Error in Common Access [User Account] : Common Access"};
+                    model.emit(callbackRouter,model)
+            }
+  
+        }) 
+}
+
+function updateAccount(model){
     
     var updateProperty={
                         "mod"       : "guard",
-                        "operation" : "create",
+                        "operation" : "update",
                         "data"      : {	
                                         "key"   : guardKey,
                                         "schema": "Primary",
+                                        "id"    :model.primaryDocToUpdateId,
                                         "data"  : {
-                                                        
+                                                    tags:model.primaryTags
                                                  }
                                     } 
                     };
@@ -67,8 +128,13 @@ function createCredentials(model){
     request(updateRequestParams, function (error, response, body){
         
         if(body){
-                body=JSON.parse(body);
-                model.emit(globalCallBackRouter,model)
+                try{
+                    body=JSON.parse(body);
+                }
+                catch(err){
+                    model.info=err
+                    model.emit(globalCallBackRouter,model)
+                }
         }
         else if(response){
                 model.info=response;
@@ -80,7 +146,7 @@ function createCredentials(model){
                 model.emit(globalCallBackRouter,model)
         }
         else{
-                model.info="Error while creating User Account : User Account \n"+body;
+                model.info="Error while updating User Account : User Account \n"+body;
                 model.emit(globalCallBackRouter,model)
         }
     }) 

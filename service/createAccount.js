@@ -95,8 +95,13 @@ var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
                         request(updateRequestParams, function (error, response, body){
                             
                             if(body){
-                                    body=JSON.parse(body);
-                                    model.emit(globalCallBackRouter,model)
+                                    try{
+                                        body=JSON.parse(body);
+                                    }
+                                    catch(err){
+                                        model.info=err;
+                                        model.emit(globalCallBackRouter,model)
+                                    }
                             }
                             else if(response){
                                     model.info=response;

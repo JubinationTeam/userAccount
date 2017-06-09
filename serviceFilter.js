@@ -86,8 +86,10 @@ function emailRead(model){
                         mobileRead(model);
                     }   
                     catch(err){
-//                        model.info={error:err}
+                        model.info={error:err}
                         console.log(err)
+                        model.emit(callbackRouter,model)
+
                     }
             }
             else if(response){
@@ -143,7 +145,8 @@ function mobileRead(model){
                          serviceCallDecision(model);
                     }
                     catch(err){
-//                        model.info={error:err}
+                        model.info={error:err}
+                        model.emit(callbackRouter,model)
                         console.log(err)
                     }
             }
