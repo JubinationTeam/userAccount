@@ -79,7 +79,7 @@ function emailRead(model){
              if (body){
                      try{
 //                        model.info=JSON.parse(body)
-                        body=JSON.parse(body.data)
+                        body=JSON.parse(body)
                          console.log(body+"READ EMAIL BODY")
                          if(body.data.length==0&&body.data instanceof Array){
                              console.log("MAIL ID DOES NOT EXIST")
