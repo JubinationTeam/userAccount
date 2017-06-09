@@ -43,7 +43,8 @@ function setup(model)
     model.once("service",serviceCallDecisionFactory);
 }
 
-function serviceCallDecisionFactory(model){    
+function serviceCallDecisionFactory(model){  
+    model.accounts=[];
     new emailRead(model)
 }
                     
@@ -77,10 +78,12 @@ function emailRead(model){
                          body=JSON.parse(body)
                        console.log(JSON.stringify(body)+"::::::::::::::::::"+model.req.body.data.email)
                          if(body.data.length>0&&(!!body.data) && (body.data.constructor === Array)){
-                             model.email=true
+                                model.accounts.push(body.data);
+                                if(model.req.body.data.mobile==body.data.mobile){
+                                    return serviceCallDecision(model);
+                                }
                          }
-                         
-                        mobileRead(model)
+                        mobileRead(model);
                     }   
                     catch(err){
 //                        model.info={error:err}
@@ -135,9 +138,9 @@ function mobileRead(model){
                         body=JSON.parse(body)
                         console.log(JSON.stringify(body)+"::::::::::::::::::"+model.req.body.data.mobile)
                          if(body.data.length>0&&(!!body.data) && (body.data.constructor === Array)){
-                             model.mobile=true
+                             model.accounts.push(body.data);
                          }
-                         serviceCallDecision(model)
+                         serviceCallDecision(model);
                     }
                     catch(err){
 //                        model.info={error:err}
@@ -163,15 +166,15 @@ function mobileRead(model){
 }
 
 function serviceCallDecision(model){
-    if(model.email||model.mobile){
-        console.log("UPDATE ACCOUNT")
-//        global.emit("updateAccount",model)
-//        model.emit("updateAccountService",model)
-    }
-    else{
+    if(model.accounts.length==0){
         console.log("CREATE ACCOUNT")
         global.emit("createAccount",model)
         model.emit("createAccountService",model)
+    }
+    else{
+        console.log("UPDATE ACCOUNT")
+        global.emit("updateAccount",model)
+        model.emit("updateAccountService",model)
     }
 }
 

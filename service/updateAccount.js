@@ -2,7 +2,7 @@
 
 //node dependencies
 var request = require('request');
-var eventEmitter = require('events');
+var eventEmitter = require('events'); 
 
 //function specific event instance
 class eventClass extends eventEmitter{}
@@ -36,12 +36,15 @@ function init(globalEmitter,globalCall,callback,url,key){
  
 function setup(model)
 {
-    model.once("updateAccountService",createCredentialsFactory);
+    model.once("updateAccountService",updateFactory);
 }
 
-function createCredentialsFactory(model){
-    new createCredentials(model);
+function updateFactory(model){
+    console.log(model.accounts+"AAAAAAACCCOOUNTS")
+    //new createCredentials(model);
 }
+
+function 
 
 function createCredentials(model){
     
