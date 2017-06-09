@@ -41,7 +41,7 @@ function setup(model)
 }
 
 function decide(model){
-    console.log(JSON.stringify(model.accounts[0].name)+"++++++")
+    console.log(JSON.stringify(model.accounts[0])+"++++++")
     console.log(JSON.stringify(model.accounts[1].tags)+"++++++")
      if(model.accounts[0].tags[model.accounts[0].tags.length-1].leadId==model.req.body.data.leadId){
             model.accounts[0].tags[model.accounts[0].tags.length-1]=model.req.body.data.tags[0]
