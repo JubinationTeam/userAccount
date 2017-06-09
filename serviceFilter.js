@@ -81,6 +81,7 @@ function emailRead(model){
                      try{
                          body=JSON.parse(body)
                          console.log(typeof body.data)
+                          console.log(body.data instanceof ["Array"]+"TYPE OF 1st body")
 //                         console.log(body.data[0].email+" READ EMAIL BODY")
 //                         console.log(body.data.length+" LENGTH")
 //                         console.log(body.data instanceof Array+" BOOLEAN")
@@ -151,7 +152,7 @@ function mobileRead(model){
 //                        model.info=JSON.parse(body)  
 //                        model.info=JSON.parse(body)  
                         body=JSON.parse(body)
-                         console.log(body.data instanceof Array+"TYPE OF 2nd body")
+                         console.log(body.data instanceof ["Array"]+"TYPE OF 2nd body")
                         console.log(body)
                          if(body.data.length==0&&body.data instanceof Array){
                              console.log("MOBILE DOES NOT EXIST")
