@@ -66,7 +66,7 @@ function emailRead(model){
                                 }
 
                 }
-    
+      
       var options     = {
                             url     : commonAccessUrl,
                             method  : 'POST',
@@ -80,7 +80,7 @@ function emailRead(model){
                      try{
 //                        model.info=JSON.parse(body)
                         body=JSON.parse(body)
-                         console.log(body.data+"READ EMAIL BODY")
+                         console.log(body.data.email+"READ EMAIL BODY")
                          if(body.data.length==0&&body.data instanceof Array){
                              console.log("MAIL ID DOES NOT EXIST")
                              model.email=false
