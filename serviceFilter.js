@@ -78,7 +78,7 @@ function emailRead(model){
                          body=JSON.parse(body)
                        console.log(JSON.stringify(body)+"::::::::::::::::::"+model.req.body.data.email)
                          if(body.data.length>0&&(!!body.data) && (body.data.constructor === Array)){
-                                model.accounts.push(body.data);
+                                model.accounts.push(body.data[0]);
                                 if(model.req.body.data.mobile==body.data.mobile){
                                     return serviceCallDecision(model);
                                 }
@@ -140,7 +140,7 @@ function mobileRead(model){
                         body=JSON.parse(body)
                         console.log(JSON.stringify(body)+"::::::::::::::::::"+model.req.body.data.mobile)
                          if(body.data.length>0&&(!!body.data) && (body.data.constructor === Array)){
-                             model.accounts.push(body.data);
+                             model.accounts.push(body.data[0]);
                          }
                          serviceCallDecision(model);
                     }
