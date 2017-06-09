@@ -140,7 +140,7 @@ function mobileRead(model){
                      try{ 
                         body=JSON.parse(body)
                          if(body.data.length>0&&(!!body.data) && (body.data.constructor === Array)){
-                             console.log("MOBILE DOES EXIST"++body.data[0])
+                             console.log("MOBILE DOES EXIST"+body.data[0])
                              model.mobile=true
                              serviceCallDecision(model)
                          }
