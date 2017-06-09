@@ -59,6 +59,9 @@ var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
      else{
             console.log(hash)
             model.req.body.data.password=hash
+            
+            //specifying the leadId
+            model.req.body.data.tags[0].leadId=model.req.body.data.leadId
                 
             var updateProperty={
                                 "mod"       : "guard",
