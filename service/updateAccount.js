@@ -51,7 +51,7 @@ function decide(model){
      model.primaryDocToUpdateId=model.accounts[0]._id
      updateAccount(model)
 }
-      
+          
 function updateAccount(model){
     
     var updateProperty={
