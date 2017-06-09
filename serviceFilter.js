@@ -59,7 +59,8 @@ function emailRead(model){
                                     "schema": "Primary",
                                     "pageNo": "1",
                                     "data"  : {
-                                                "email"     :model.req.body.data.email
+//                                                "email"     :model.req.body.data.email
+                                                "email"     :"test@test.com"
                                                // "email"     : "bil123456778@gmail.com"
 //                                            "email"     : "bil1234567gyjgfyjugfyujgyi78@gmail.com"
                                             }  
