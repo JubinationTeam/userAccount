@@ -56,7 +56,7 @@ function emailRead(model){
                     "operation" : "read",
                     "data"      : {	
                                     "key"   : guardKey,
-                                    "schema": "Lead",
+                                    "schema": "Primary",
                                     "pageNo": "1",
                                     "data"  : {
                                                 "email"     :model.req.body.data.email,
@@ -83,13 +83,13 @@ function emailRead(model){
                          if(body.data.length==0&&body.data instanceof Array){
                              console.log("MAIL ID DOES NOT EXIST")
                              email=false
-                              mobileReadFunction()
+                              mobileRead(model)
                              console.log(body)
                          }
                          else{
                              console.log("MAIL ID DOES EXIST")
                              email=true
-                             mobileRead()
+                             mobileRead(model)
                          }
 //                        model.email=true
                     }
