@@ -46,11 +46,10 @@ function setup(model)
 function serviceCallDecisionFactory(model){    
     new emailRead(model)
 }
-                  
+                    
 function emailRead(model){
-    console.log(JSON.stringify(model.req.body))
-    
-    console.log(model.req.body.newTags+"BBBBOOOODDDDDYYYYY");                             console.log(model.req.body.data.email+":::::::::::::::::");
+    console.log(JSON.stringify(model.req.body))                         
+    console.log(model.req.body.data.email+":::::::::::::::::");
     
     var body={
                     "mod"       : "guard",
