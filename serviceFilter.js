@@ -90,16 +90,16 @@ function emailRead(model){
             else if(response){
                     model.info={error:response,
                                 place:"Common Access User Account"}
-                    global.emit(callbackRouter,model)
+                    model.emit(callbackRouter,model)
             }
             else if(error){
                     model.info={error:error,
                                 place:"Common Access User Account"}
-                    global.emit(callbackRouter,model)
+                    model.emit(callbackRouter,model)
             }      
             else{
                     model.info={error:"Error in Common Access [User Account] : Common Access"};
-                    global.emit(callbackRouter,model)
+                    model.emit(callbackRouter,model)
             }
         
         }) 
@@ -170,8 +170,8 @@ function serviceCallDecision(model){
     }
     else{
         console.log("CREATE ACCOUNT")
-//        global.emit("createAccount",model)
-//        model.emit("createAccountService",model)
+        global.emit("createAccount",model)
+        model.emit("createAccountService",model)
     }
 }
 

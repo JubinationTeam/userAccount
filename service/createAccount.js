@@ -3,7 +3,7 @@
 //node dependencies
 var request = require('request');
 var eventEmitter = require('events');
-//var bcrypt=require('bcrypt')
+var bcrypt = require('bcryptjs');
 
 //function specific event instance
 class eventClass extends eventEmitter{}
@@ -33,6 +33,7 @@ function init(globalEmitter,globalCall,callback,url,key){
     globalCallBackRouter=callback;
     commonAccessUrl=url;
     guardKey=key;
+    
 }
  
 function setup(model)
@@ -50,16 +51,19 @@ const data="abcd"
 const password=""
 
 var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
-//    
-//bcrypt.hash(data, salt, function(err, hash) {
-//    if(err){
-//        console.log(err)
-//    }
-//    else{
-//        console.log(hash)
-//        password=hash
-//    }
-//    });
+
+ bcrypt.hash("B4c0/\/", salt, function(err, hash) {
+        
+     if(err){
+         console.log(err)
+     }
+     else{
+         console.log(hash)
+     }
+     
+    });
+
+
  model.req.body.data.password=password
     
     var updateProperty={
@@ -85,32 +89,34 @@ var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
                                     } 
                     };
     
+    console.log(updateProperty)
+    
     var updateRequestParams     = {
                             url     : commonAccessUrl,
                             method  : 'POST',
                             headers : headers,
                             body    : JSON.stringify(updateProperty)
                     }
-    request(updateRequestParams, function (error, response, body){
-        
-        if(body){
-                body=JSON.parse(body);
-                model.emit(globalCallBackRouter,model)
-        }
-        else if(response){
-                model.info=response;
-                model.emit(globalCallBackRouter,model)
-        }
-        else if(error){
-                //console.logg(error);
-                model.info=error;
-                model.emit(globalCallBackRouter,model)
-        }
-        else{
-                model.info="Error while creating User Account : User Account \n"+body;
-                model.emit(globalCallBackRouter,model)
-        }
-    }) 
+//    request(updateRequestParams, function (error, response, body){
+//        
+//        if(body){
+//                body=JSON.parse(body);
+//                model.emit(globalCallBackRouter,model)
+//        }
+//        else if(response){
+//                model.info=response;
+//                model.emit(globalCallBackRouter,model)
+//        }
+//        else if(error){
+//                //console.logg(error);
+//                model.info=error;
+//                model.emit(globalCallBackRouter,model)
+//        }
+//        else{
+//                model.info="Error while creating User Account : User Account \n"+body;
+//                model.emit(globalCallBackRouter,model)
+//        }
+//    }) 
 
 }
 
