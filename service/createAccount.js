@@ -93,7 +93,7 @@ var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
                             
                             if(body){
                                     try{
-                                        model.info=JSON.parse(body)+": Account created successfully for Lead Id :"+model.req.body.data.leadId;
+                                        model.info=JSON.parse(body)
                                         console.log(JSON.stringify(JSON.parse(body))+"=============")
                                         model.emit(globalCallBackRouter,model)
                                     }
