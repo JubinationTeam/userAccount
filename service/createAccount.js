@@ -2,12 +2,7 @@
 
 //node dependencies
 var request = require('request');
-var eventEmitter = require('events');
 var bcrypt = require('bcryptjs');
-
-//function specific event instance
-class eventClass extends eventEmitter{}
-const event = new eventClass()
 
 // event names
 var globalDataAccessCall;
@@ -36,22 +31,25 @@ function init(globalEmitter,globalCall,callback,url,key){
     
 }
  
+//function to setup the model's event listener 
 function setup(model)
 {
-    model.once("createAccountService",createCredentialsFactory);
+    model.once("createAccountService",createUserAccountFactory);
 }
 
-function createCredentialsFactory(model){
-    new createCredentials(model);
+//function to create a new 'createUserAccount' function for each model
+function createUserAccountFactory(model){
+    new createUserAccount(model);
 }
 
-function createCredentials(model){
+//function to generate user credentials and create user account
+function createUserAccount(model){
 
 model.req.body.data.password="abcd"
 
 var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
 
- bcrypt.hash("B4c0/\/", salt, function(err, hash) {
+ bcrypt.hash(model.req.body.data.password, salt, function(err, hash) {
         
      if(err){
          model.info=err
@@ -63,7 +61,7 @@ var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
             //specifying the leadId
             model.req.body.data.tags[0].leadId=model.req.body.data.leadId
                   
-            var updateProperty={
+            var createProperty={
                                 "mod"       : "guard",
                                 "operation" : "create",
                                 "data"      : {	
@@ -85,17 +83,18 @@ var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
                                             } 
                             };
 
-            var updateRequestParams     = {
+            var createRequestParams     = {
                                     url     : commonAccessUrl,
                                     method  : 'POST',
                                     headers : headers,
-                                    body    : JSON.stringify(updateProperty)
+                                    body    : JSON.stringify(createProperty)
                             }
-                        request(updateRequestParams, function (error, response, body){
+                        request(createRequestParams, function (error, response, body){
                             
                             if(body){
                                     try{
-                                        body=JSON.parse(body);
+                                        model.info=JSON.parse(body)+": Account created successfully for Lead Id :"+model.req.body.data.leadId;
+                                        model.emit(globalCallBackRouter,model)
                                     }
                                     catch(err){
                                         model.info=err;
@@ -120,10 +119,6 @@ var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
      
     });
 }
-
-
-
-
 
 //exports
 module.exports.init=init;

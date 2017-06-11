@@ -2,11 +2,6 @@
 
 //node dependencies
 var request = require('request');
-var eventEmitter = require('events'); 
-
-//function specific event instance
-class eventClass extends eventEmitter{}
-const event = new eventClass()
 
 // event names
 var globalDataAccessCall;
@@ -34,11 +29,13 @@ function init(globalEmitter,globalCall,callback,url,key){
     guardKey=key;
 }
  
+//function to create model's event listener 
 function setup(model)
 {
     model.once("updateAccountService",decide);
 }
 
+//function to update account based on the transaction 
 function decide(model){
      if(model.accounts[0].tags[model.accounts[0].tags.length-1].leadId==model.req.body.data.leadId){
             model.accounts[0].tags[model.accounts[0].tags.length-1]=model.req.body.data.tags[0]
@@ -75,7 +72,8 @@ function updateAccount(model){
         
         if(body){
                 try{
-                    body=JSON.parse(body);
+                    model.info=JSON.parse(body)+": Account updated successfully for Lead Id :"+model.req.body.data.leadId;
+                    model.emit(globalCallBackRouter,model)
                 }
                 catch(err){
                     model.info=err

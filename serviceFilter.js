@@ -3,15 +3,11 @@
 //node dependencies
 var request = require('request');
 
-//user defined dependencies
-
 // event names
 const callbackOperation="callbackOperation"
 
 // global event emitter
 var global;
-
-var email,mobile;
 
 //Guard Access Variables
 var commonAccessUrl;
@@ -26,9 +22,8 @@ const headers     = {
                     'Content-Type':'application/json'
                 }
 
-// function to instantiate
+//function to instantiate
 function init(globalEmitter,globalCall,callback,url,key){
-//    globalEmitter.on(globalCall,setup)
     globalEmitter.on(globalCall,setup)
     global=globalEmitter;
     callbackRouter=callback;
@@ -36,16 +31,19 @@ function init(globalEmitter,globalCall,callback,url,key){
     guardKey=key
 }
 
+//function to setup the model's event listener    
 function setup(model)
 {
-    model.once("service",serviceCallDecisionFactory);
+    model.once("service",emailReadFactory);
 }
 
-function serviceCallDecisionFactory(model){  
+//function to create a new 'emailRead' function for each model 
+function emailReadFactory(model){  
     model.accounts=[];
     new emailRead(model)
 }
-                    
+    
+//function to read Primary schema of Guard module by the email parameter of the lead 
 function emailRead(model){             
     
     var body={
@@ -90,22 +88,23 @@ function emailRead(model){
             }
             else if(response){
                     model.info={error:response,
-                                place:"Common Access User Account"}
+                                place:"User Account Module : Read by Email Function"}
                     model.emit(callbackRouter,model)
             }
             else if(error){
                     model.info={error:error,
-                                place:"Common Access User Account"}
+                                place:"User Account Module : Read by Email Function"}
                     model.emit(callbackRouter,model)
             }      
             else{
-                    model.info={error:"Error in Common Access [User Account] : Common Access"};
+                    model.info={error:"Error in User Account Module : Read by Email Function"};
                     model.emit(callbackRouter,model)
             }
         
         }) 
 }  
 
+//function to read Primary schema of Guard module by the mobile parameter of the lead 
 function mobileRead(model){
     var body={
                     "mod"       : "guard",
@@ -145,22 +144,23 @@ function mobileRead(model){
             }
             else if(response){
                     model.info={error:response,
-                                place:"Common Access User Account"}
+                                place:"User Account Module : Read by Mobile Function"}
                     model.emit(callbackRouter,model)
             }
             else if(error){
                     model.info={error:error,
-                                place:"Common Access User Account"}
+                                place:"User Account Module : Read by Mobile Function"}
                     model.emit(callbackRouter,model)
             }      
             else{
-                    model.info={error:"Error in Common Access [User Account] : Common Access"};
+                    model.info={error:"Error in User Account Module : Read by Mobile Function"};
                     model.emit(callbackRouter,model)
             }
   
         }) 
 }
 
+//function to create an account for a new user or update the account of an existing user
 function serviceCallDecision(model){
     if(model.accounts.length==0){
         global.emit("createAccount",model)
