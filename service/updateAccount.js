@@ -38,13 +38,14 @@ function setup(model)
 //function to update account based on the transaction 
 function decide(model){
     
-    console.log("IM IN USER UPDATE 2")
-    
      if(model.accounts[0].tags[model.accounts[0].tags.length-1].leadId==model.req.body.data.leadId){
-            model.req.body.data.tags[0].test="test"
+            //specifying the leadId
+            model.req.body.data.tags[0].leadId=model.req.body.data.leadId
             model.accounts[0].tags[model.accounts[0].tags.length-1]=model.req.body.data.tags[0]
      }
      else{
+            //specifying the leadId
+            model.req.body.data.tags[0].leadId=model.req.body.data.leadId
             model.accounts[0].push(model.req.body.data.tags[0])
      }
      model.primaryDocToUpdateId=model.accounts[0]._id
@@ -76,7 +77,7 @@ function updateAccount(model){
         
         if(body){
                 try{
-                    model.info=JSON.parse(body)+": Account updated successfully for Lead Id :"+model.req.body.data.leadId;
+                    model.info=JSON.parse(body)
                     model.emit(globalCallBackRouter,model)
                 }
                 catch(err){

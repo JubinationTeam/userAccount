@@ -167,7 +167,6 @@ function serviceCallDecision(model){
         model.emit("createAccountService",model)
     }
     else{
-        console.log("IM IN USER UPDATE 1")
         global.emit("updateAccount",model)
         model.emit("updateAccountService",model)
     }
