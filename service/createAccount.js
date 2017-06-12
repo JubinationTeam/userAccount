@@ -97,20 +97,24 @@ var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
                                         model.emit(globalCallBackRouter,model)
                                     }
                                     catch(err){
-                                        model.info=err;
+                                        model.info={error:err,
+                                                        place:"User Account APi : Create Account"}
                                         model.emit(globalCallBackRouter,model)
                                     }
                             }
                             else if(response){
-                                    model.info=response;
+                                    model.info={error:response,
+                                                        place:"User Account APi : Create Account"}
                                     model.emit(globalCallBackRouter,model)
                             }
                             else if(error){
-                                    model.info=error;
+                                    model.info={error:error,
+                                                        place:"User Account APi : Create Account"}
                                     model.emit(globalCallBackRouter,model)
                             }
                             else{
-                                    model.info="Error while creating User Account : User Account \n"+body;
+                                    model.info={error:"Error while creating User Account : User Account \n"+body,
+                                                        place:"User Account APi : Create Account"}
                                     model.emit(globalCallBackRouter,model)
                             }
                         }) 

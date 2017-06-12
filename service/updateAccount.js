@@ -81,20 +81,24 @@ function updateAccount(model){
                     model.emit(globalCallBackRouter,model)
                 }
                 catch(err){
-                    model.info=err
+                    model.info={error:err,
+                                place:"User Account APi : Update Account"}
                     model.emit(globalCallBackRouter,model)
                 }
         }
         else if(response){
-                model.info=response;
+                model.info={error:response,
+                                place:"User Account APi : Update Account"}
                 model.emit(globalCallBackRouter,model)
         }
         else if(error){
-                model.info=error;
+                model.info={error:error,
+                                place:"User Account APi : Update Account"}
                 model.emit(globalCallBackRouter,model)
         }
         else{
-                model.info="Error while updating User Account : User Account \n"+body;
+                model.info={error: "Error while updating User Account : User Account \n"+body,
+                                place:"User Account APi : Update Account"}
                 model.emit(globalCallBackRouter,model)
         }
     }) 
