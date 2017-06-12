@@ -38,6 +38,7 @@ function setup(model)
 //function to update account based on the transaction 
 function decide(model){
      if(model.accounts[0].tags[model.accounts[0].tags.length-1].leadId==model.req.body.data.leadId){
+            model.req.body.data.tags[0].test="test"
             model.accounts[0].tags[model.accounts[0].tags.length-1]=model.req.body.data.tags[0]
      }
      else{
