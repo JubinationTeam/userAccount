@@ -82,19 +82,19 @@ function emailRead(model){
                     }   
                     catch(err){
                         model.info={error:err,
-                                place:"User Account Module : Read by Email Function"}
+                                place:"User Account Module : Read by Email Function : Error while parsing"}
                         model.emit(callbackRouter,model)
 
                     }
             }
             else if(response){
                     model.info={error:response,
-                                place:"User Account Module : Read by Email Function"}
+                                place:"User Account Module : Read by Email Function : Error in response"}
                     model.emit(callbackRouter,model)
             }
             else if(error){
                     model.info={error:error,
-                                place:"User Account Module : Read by Email Function"}
+                                place:"User Account Module : Read by Email Function : Request error"}
                     model.emit(callbackRouter,model)
             }      
             else{
@@ -140,18 +140,18 @@ function mobileRead(model){
                     }
                     catch(err){
                         model.info={error:err,
-                                place:"User Account Module : Read by Mobile Function"}
+                                place:"User Account Module : Read by Mobile Function : Error while parsing"}
                         model.emit(callbackRouter,model)
                     }
             }
             else if(response){
                     model.info={error:response,
-                                place:"User Account Module : Read by Mobile Function"}
+                                place:"User Account Module : Read by Mobile Function : Error in response"}
                     model.emit(callbackRouter,model)
             }
             else if(error){
                     model.info={error:error,
-                                place:"User Account Module : Read by Mobile Function"}
+                                place:"User Account Module : Read by Mobile Function : Request error"}
                     model.emit(callbackRouter,model)
             }      
             else{
