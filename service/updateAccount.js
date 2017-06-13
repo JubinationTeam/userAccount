@@ -77,24 +77,23 @@ function updateAccount(model){
         
         if(body){
                 try{
-                    model.info={error:JSON.parse(body),
-                                place:"User Account APi : Update Account"}
+                    model.info=JSON.parse(body)
                     model.emit(globalCallBackRouter,model)
                 }
                 catch(err){
                     model.info={error:err,
-                                place:"User Account APi : Update Account"}
+                                place:"User Account APi : Update Account : Error while parsing"}
                     model.emit(globalCallBackRouter,model)
                 }
         }
         else if(response){
                 model.info={error:response,
-                                place:"User Account APi : Update Account"}
+                                place:"User Account APi : Update Account : Error in response"  }
                 model.emit(globalCallBackRouter,model)
         }
         else if(error){
                 model.info={error:error,
-                                place:"User Account APi : Update Account"}
+                                place:"User Account APi : Update Account : Request Error"}
                 model.emit(globalCallBackRouter,model)
         }
         else{

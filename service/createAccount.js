@@ -98,18 +98,18 @@ var salt="$2a$10$QEqrvn/5vJyMDeupkSKbCe6rRQzGmsDq4Yn5Oa4"
                                     }
                                     catch(err){
                                         model.info={error:err,
-                                                        place:"User Account APi : Create Account"}
+                                                        place:"User Account APi : Create Account : Error while parsing"}
                                         model.emit(globalCallBackRouter,model)
                                     }
                             }
                             else if(response){
                                     model.info={error:response,
-                                                        place:"User Account APi : Create Account"}
+                                                        place:"User Account APi : Create Account : Error in response"}
                                     model.emit(globalCallBackRouter,model)
                             }
                             else if(error){
                                     model.info={error:error,
-                                                        place:"User Account APi : Create Account"}
+                                                        place:"User Account APi : Create Account : Request Error"}
                                     model.emit(globalCallBackRouter,model)
                             }
                             else{
