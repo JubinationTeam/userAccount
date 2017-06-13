@@ -81,7 +81,8 @@ function emailRead(model){
                         mobileRead(model);
                     }   
                     catch(err){
-                        model.info={error:err}
+                        model.info={error:err,
+                                place:"User Account Module : Read by Email Function"}
                         model.emit(callbackRouter,model)
 
                     }
@@ -138,7 +139,8 @@ function mobileRead(model){
                          serviceCallDecision(model);
                     }
                     catch(err){
-                        model.info={error:err}
+                        model.info={error:err,
+                                place:"User Account Module : Read by Mobile Function"}
                         model.emit(callbackRouter,model)
                     }
             }

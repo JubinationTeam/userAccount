@@ -77,7 +77,7 @@ function updateAccount(model){
         
         if(body){
                 try{
-                     model.info={error:JSON.parse(body),
+                    model.info={error:JSON.parse(body),
                                 place:"User Account APi : Update Account"}
                     model.emit(globalCallBackRouter,model)
                 }
