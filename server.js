@@ -6,7 +6,7 @@ var app = express();
 var bodyParser = require('body-parser');
 
 // user-defined dependencies
-var initFunction=require('./init.js').init;
+var initFunction=require('./app/init.js').init;
 
 // json parsing
 var jsonParser = bodyParser.json()
